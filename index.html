@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //
+
+  // Q: Find path for Nested keys ?
+  //    Note : Input keys separated by dots as string.
+
+  /**
+   * Step 1. As we know our input is given in string,
+   * Step 2. So first we have to convert the given pathKeys into array, by using split(".") method.
+   * Step 3. After that we have to ittrate a loop on that pathKeys.
+   * Step 4. Then we will use hasOwnProperty for checking those pathKeys that are available on object or not.
+   * Step 5. If it's avalaible in object so give me the value of that key.
+   * Step 6 .Otherwise show  as undefined.
+   
+   * */
+
+  //** Method 1  using with HasOwnProperty.
+
+  var obj = {
+    a: {
+      b: {
+        c: 12,
+        j: false,
+      },
+      k: null,
+    },
+  };
+
+  const findPath = (myObj, pathKey) => {
+    const arr = pathKey.split("."); //**  console.log("@AT after-Spliting-Key", arr);
+    for (let i = 0; i < arr.length; i++) {
+      if (myObj.hasOwnProperty(arr[i])) {
+        myObj = myObj[arr[i]];
+      } else {
+        return undefined;
+      }
+    }
+    return myObj;
+  };
+  console.log(findPath(obj, "a.k"));
+
+  //** Method 2 Without using HasOwnProperty.
+
+  var obj = {
+    a: {
+      b: {
+        c: 12,
+        j: false,
+      },
+      k: null,
+    },
+  };
+
+  const findPath2 = (myObj, pathKey) => {
+    const arr = pathKey.split("."); //** console.log("@AT after-Spliting-Key", arr);
+    for (let i = 0; i < arr.length; i++) {
+      myObj = myObj[arr[i]];
+    }
+    console.log(myObj);
+  };
+  findPath2(obj, "a.b.c");
+</script>
